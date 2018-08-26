@@ -1,6 +1,7 @@
 package com.dongnao.weixinapp.service;
 
 import com.dongnao.weixinapp.dataobject.ProductInfo;
+import com.dongnao.weixinapp.dto.CartDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -10,9 +11,15 @@ public interface ProductService {
 
     ProductInfo findOne(String productId);
 
-    List<ProductInfo> findUpAll(Pageable pageable);
+    public List<ProductInfo> findUpAll();
 
     ProductInfo save(ProductInfo productInfo);
 
     Page<ProductInfo> findAll(Pageable pageable);
+
+//    加库存
+
+    void increaseStock(List<CartDTO> cartDTOList);
+
+    void decreaseStock(List<CartDTO> cartDTOList);
 }

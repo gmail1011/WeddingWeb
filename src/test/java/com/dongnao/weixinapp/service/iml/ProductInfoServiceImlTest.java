@@ -36,11 +36,34 @@ public class ProductInfoServiceImlTest {
         productCategory.setProductStatus(0);
         productCategory.setProductIcon("http://image");
         productCategory.setCategoryType(3);
-
         repository.save(productCategory);
     }
 
     @Test
     public void findAll() {
+    }
+
+    @Test
+    public void findOne1() {
+    }
+
+    @Test
+    public void findUpAll1() {
+    }
+
+    @Test
+    public void save1() {
+    }
+
+    @Test
+    public void findAll1() {
+    }
+
+    @Test
+    public void increaseStock() {
+    }
+
+    @Test
+    public void decreaseStock() {
     }
 }

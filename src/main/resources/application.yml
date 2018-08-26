@@ -2,10 +2,12 @@ spring:
   datasource:
     username: root
     password: 19931125Tu
-    url: jdbc:mysql://47.75.90.219:3306/springdb
+    url: jdbc:mysql://47.75.90.219:3306/springdb?characterEncoding=utf-8&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     show-sql: true
+  jackson:
+    default-property-inclusion: non_null
 server:
   servlet:
     context-path: /weixin

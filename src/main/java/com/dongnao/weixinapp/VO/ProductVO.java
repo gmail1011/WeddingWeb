@@ -10,7 +10,7 @@ public class ProductVO {
     @JsonProperty("name")
     private String cateoryName;
     @JsonProperty("type")
-    private String catetoryType;
+    private Integer catetoryType;
     @JsonProperty("foods")
     private List<ProductInfoVO> productInfoVOList;
 }
