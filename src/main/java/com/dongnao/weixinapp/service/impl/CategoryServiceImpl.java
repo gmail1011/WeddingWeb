@@ -1,37 +1,40 @@
-package com.dongnao.weixinapp.service.iml;
+package com.dongnao.weixinapp.service.impl;
 
 import com.dongnao.weixinapp.dataobject.ProductCategory;
 import com.dongnao.weixinapp.repository.ProductCategoryRepository;
 import com.dongnao.weixinapp.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
+import org.springframework.data.domain.Example;
 import java.util.List;
-import java.util.Optional;
+
+/**
+ * 类目
+ * Created by 廖师兄
+ * 2017-05-09 10:16
+ */
 @Service
 public class CategoryServiceImpl implements CategoryService {
+
     @Autowired
     private ProductCategoryRepository repository;
+
     @Override
     public ProductCategory findOne(Integer categoryId) {
-        ProductCategory person = new ProductCategory();
-        person.setCategoryId(categoryId);
-        Example<ProductCategory> example = Example.of(person);
-        Optional<ProductCategory> productCategory = repository.findOne(example);
-        return productCategory.get();
+        ProductCategory where = new ProductCategory();
+        where.setCategoryId(categoryId);
+        Example<ProductCategory> example = Example.of(where);
+        return repository.findOne(example).get();
     }
 
     @Override
     public List<ProductCategory> findAll() {
-
         return repository.findAll();
     }
 
     @Override
     public List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryTypeList) {
-        return repository.findAllById(categoryTypeList);
+        return repository.findByCategoryTypeIn(categoryTypeList);
     }
 
     @Override

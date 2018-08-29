@@ -1,4 +1,4 @@
-package com.dongnao.weixinapp.service.iml;
+package com.dongnao.weixinapp.service.impl;
 
 import com.dongnao.weixinapp.dto.OrderDTO;
 import com.dongnao.weixinapp.enums.ResultEnum;
@@ -9,9 +9,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Created by 廖师兄
+ * 2017-06-22 00:13
+ */
 @Service
 @Slf4j
-public class BuyerServiceImpl  implements BuyerService {
+public class BuyerServiceImpl implements BuyerService {
+
     @Autowired
     private OrderService orderService;
 
@@ -44,4 +49,3 @@ public class BuyerServiceImpl  implements BuyerService {
         return orderDTO;
     }
 }
-

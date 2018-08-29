@@ -1,4 +1,4 @@
-package com.dongnao.weixinapp.service.iml;
+package com.dongnao.weixinapp.service.impl;
 
 import com.dongnao.weixinapp.dataobject.SellerInfo;
 import com.dongnao.weixinapp.repository.SellerInfoRepository;

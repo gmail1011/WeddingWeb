@@ -1,15 +1,15 @@
 package com.dongnao.weixinapp.repository;
 
-
 import com.dongnao.weixinapp.dataobject.ProductCategory;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ProductCategoryRepository  extends JpaRepository<ProductCategory,Integer> {
+/**
+ * Created by 廖师兄
+ * 2017-05-07 14:35
+ */
+public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Integer> {
 
-    @Override
-    List<ProductCategory> findAllById(Iterable<Integer> iterable);
+    List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryTypeList);
 }

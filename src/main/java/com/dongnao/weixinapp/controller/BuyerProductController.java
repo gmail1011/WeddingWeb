@@ -1,4 +1,4 @@
-package com.dongnao.weixinapp.control;
+package com.dongnao.weixinapp.controller;
 
 import com.dongnao.weixinapp.VO.ProductInfoVO;
 import com.dongnao.weixinapp.VO.ProductVO;
@@ -18,38 +18,57 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 买家商品
+ * Created by 廖师兄
+ * 2017-05-12 14:08
+ */
 @RestController
 @RequestMapping("/buyer/product")
 public class BuyerProductController {
 
     @Autowired
     private ProductService productService;
+
     @Autowired
     private CategoryService categoryService;
 
     @GetMapping("/list")
     public ResultVO list() {
-
+        //1. 查询所有的上架商品
         List<ProductInfo> productInfoList = productService.findUpAll();
-        List<Integer> categoryList=productInfoList.stream().map(e -> e.getCategoryType()).collect(Collectors.toList());
-        List<ProductCategory> categories=categoryService.findByCategoryTypeIn(categoryList);
+
+        //2. 查询类目(一次性查询)
+//        List<Integer> categoryTypeList = new ArrayList<>();
+        //传统方法
+//        for (ProductInfo productInfo : productInfoList) {
+//            categoryTypeList.add(productInfo.getCategoryType());
+//        }
+        //精简方法(java8, lambda)
+        List<Integer> categoryTypeList = productInfoList.stream()
+                .map(e -> e.getCategoryType())
+                .collect(Collectors.toList());
+        List<ProductCategory> productCategoryList = categoryService.findByCategoryTypeIn(categoryTypeList);
+
+        //3. 数据拼装
         List<ProductVO> productVOList = new ArrayList<>();
-        for (ProductCategory category : categories) {
+        for (ProductCategory productCategory: productCategoryList) {
             ProductVO productVO = new ProductVO();
-            productVO.setCateoryName(category.getCategoryName());
-            productVO.setCatetoryType(category.getCategoryType());
+            productVO.setCategoryType(productCategory.getCategoryType());
+            productVO.setCategoryName(productCategory.getCategoryName());
+
             List<ProductInfoVO> productInfoVOList = new ArrayList<>();
-            for (ProductInfo productIn : productInfoList) {
-                if (productIn.getCategoryType().equals(category.getCategoryType())) {
-                    ProductInfoVO productInfo = new ProductInfoVO();
-                    BeanUtils.copyProperties(productIn, productInfo);
-                    productInfoVOList.add(productInfo);
+            for (ProductInfo productInfo: productInfoList) {
+                if (productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
+                    ProductInfoVO productInfoVO = new ProductInfoVO();
+                    BeanUtils.copyProperties(productInfo, productInfoVO);
+                    productInfoVOList.add(productInfoVO);
                 }
             }
             productVO.setProductInfoVOList(productInfoVOList);
             productVOList.add(productVO);
         }
+
         return ResultVOUtil.success(productVOList);
     }
-
 }

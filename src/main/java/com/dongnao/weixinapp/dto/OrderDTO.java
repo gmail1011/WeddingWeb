@@ -6,7 +6,6 @@ import com.dongnao.weixinapp.enums.PayStatusEnum;
 import com.dongnao.weixinapp.utils.EnumUtil;
 import com.dongnao.weixinapp.utils.serializer.Date2LongSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
@@ -20,7 +19,7 @@ import java.util.List;
  */
 @Data
 //@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
 
     /** 订单id. */
