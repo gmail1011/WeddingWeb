@@ -15,4 +15,8 @@ public class JsonUtil {
         Gson gson = gsonBuilder.create();
         return gson.toJson(object);
     }
+    public static<T> T toJson(String data,Class<T> t) {
+        Gson gson = new Gson();
+        return  gson.fromJson(data, t);
+    }
 }
