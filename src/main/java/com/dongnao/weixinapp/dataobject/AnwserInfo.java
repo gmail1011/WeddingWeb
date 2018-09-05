@@ -20,5 +20,7 @@ public class AnwserInfo {
     private String D;
     private String helpContent;
     private String rightContent;
-    private int rightIndex;//1  选择题  2  点赞题   3   问答题
+    private int rightIndex;//1  选择题  2  点赞题   3
+    private Integer times;
+    private String prizeId;
 }

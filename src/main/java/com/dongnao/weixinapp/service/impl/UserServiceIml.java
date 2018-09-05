@@ -37,4 +37,15 @@ public class UserServiceIml implements UserService {
         }
         return userDTO;
     }
+
+    @Override
+    public UserDTO find(String userId) {
+        UserDTO userDTO = new UserDTO();
+        User user = weixinUserRepository.findById(userId).get();
+
+        if (user != null) {
+            BeanUtils.copyProperties(user,userDTO);
+        }
+        return userDTO;
+    }
 }

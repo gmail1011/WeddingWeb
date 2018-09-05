@@ -33,7 +33,9 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public AnwserInfo create(AnwserInfo answerVo) {
         String orderId = KeyUtil.genUniqueKey();
-        return null;
+        answerVo.setAnwserId(orderId);
+        answerRepository.save(answerVo);
+        return answerVo;
     }
 
     @Override
@@ -49,6 +51,7 @@ public class AnswerServiceImpl implements AnswerService {
             return false;
         }
         String data = JsonUtil.toJson(anwserInfo);
+        System.out.println("-----准备发送消息  "+data);
         webSocket.sendMessage(data);
         return true;
     }

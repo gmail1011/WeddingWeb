@@ -35,3 +35,15 @@ CREATE TABLE order_master(
 	PRIMARY KEY(order_id),
 	KEY idx_buyer_openid (buyer_openid)
 ) COMMENT "订单表"
+CREATE TABLE anwser_history (
+anwser_id VARCHAR(64) NOT NULL,
+user_id VARCHAR(64) NOT NULL COMMENT "问题类型",
+anwser_number INTEGER DEFAULT 0  COMMENT "问题类型",
+prize_id VARCHAR(64) NOT NULL COMMENT "问题类型",
+anwser VARCHAR(64) NOT NULL COMMENT "问题类型",
+right_anwser VARCHAR(64) NOT NULL COMMENT "问题类型",
+is_right INTEGER COMMENT "正确答案",
+create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT "创建时间",
+update_time  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT "更新时间"
+
+) COMMENT "答案记录表";

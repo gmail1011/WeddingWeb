@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by 廖师兄
@@ -34,4 +35,9 @@ public class OrderDetail {
 
     /** 商品小图. */
     private String productIcon;
+    /** 创建时间. */
+    private Date createTime;
+
+    /** 更新时间. */
+    private Date updateTime;
 }
