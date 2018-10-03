@@ -21,7 +21,7 @@ public class UserServiceIml implements UserService {
     @Override
     public UserDTO create(UserDTO userDTO) {
         User user = new User();
-        user.setWeixinName(user.getWeixinName());
+        user.setWeixinName(userDTO.getWeixinName());
         Example<User> example = Example.of(user);
         User dataUser = weixinUserRepository.findOne(example).get();
         if (dataUser != null) {

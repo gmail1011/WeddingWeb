@@ -16,5 +16,9 @@ public class PrizeInfo {
 
     /** 创建时间. */
     private String prizeImg;
+    private Integer prizeNumber;
+
+    private Integer state;
+
 
 }

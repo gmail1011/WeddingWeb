@@ -52,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
     private PushMessageService pushMessageService;
 
     @Autowired
-    private WebSocket webSocket;
+    private MyWebSocket myWebSocket;
 
     @Override
     @Transactional
@@ -102,7 +102,7 @@ public class OrderServiceImpl implements OrderService {
         productService.decreaseStock(cartDTOList);
 
         //发送websocket消息
-        webSocket.sendMessage(orderDTO.getOrderId());
+//        webWeixinSocket.sendMessage(orderDTO.getOrderId());
 
         return orderDTO;
     }

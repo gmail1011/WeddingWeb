@@ -13,4 +13,6 @@ public interface AnswerService {
     AnwserInfo cancel(AnwserInfo answerVo);
 
     boolean pushService(String answerId);
+
+    boolean deletePush(String anwserId);
 }

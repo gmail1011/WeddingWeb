@@ -3,13 +3,14 @@ package com.dongnao.weixinapp.service.impl;
 import com.dongnao.weixinapp.dataobject.AnwserInfo;
 import com.dongnao.weixinapp.repository.AnswerRepository;
 import com.dongnao.weixinapp.service.AnswerService;
-import com.dongnao.weixinapp.service.WebSocket;
+import com.dongnao.weixinapp.service.MyWebSocket;
 import com.dongnao.weixinapp.utils.JsonUtil;
 import com.dongnao.weixinapp.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,7 @@ public class AnswerServiceImpl implements AnswerService {
     @Autowired
     private AnswerRepository answerRepository;
     @Autowired
-    private WebSocket webSocket;
+    private MyWebSocket myWebSocket;
     @Override
     public List<AnwserInfo> findList() {
         return answerRepository.findAll();
@@ -32,6 +33,8 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public AnwserInfo create(AnwserInfo answerVo) {
+        HashMap map = new HashMap();
+        map.put("", "");
         String orderId = KeyUtil.genUniqueKey();
         answerVo.setAnwserId(orderId);
         answerRepository.save(answerVo);
@@ -52,7 +55,14 @@ public class AnswerServiceImpl implements AnswerService {
         }
         String data = JsonUtil.toJson(anwserInfo);
         System.out.println("-----准备发送消息  "+data);
-        webSocket.sendMessage(data);
+//        webWeixinSocket.sendMessage(data);
+        return true;
+    }
+
+    @Override
+    public boolean deletePush(String anwserId) {
+        System.out.println("===========>  "+anwserId);
+        answerRepository.deleteById(anwserId);
         return true;
     }
 }
